@@ -45,7 +45,8 @@ public class Model : MonoBehaviour {
 
         if(one.state == State.SE_move)
         {
-            ship_obj.transform.position = Vector3.MoveTowards(ship_obj.transform.position, shipEndPos, Time.deltaTime * speed);
+            one.currentScenceController.actionManager.moveBoat(ship_obj, shipEndPos, speed);
+            //ship_obj.transform.position = Vector3.MoveTowards(ship_obj.transform.position, shipEndPos, Time.deltaTime * speed);
             if(ship_obj.transform.position == shipEndPos)
             {
                 one.state = State.End;
@@ -53,7 +54,8 @@ public class Model : MonoBehaviour {
         }
         else if(one.state == State.ES_move)
         {
-            ship_obj.transform.position = Vector3.MoveTowards(ship_obj.transform.position, shipStartPos, Time.deltaTime * speed);
+            one.currentScenceController.actionManager.moveBoat(ship_obj, shipStartPos, speed);
+            //ship_obj.transform.position = Vector3.MoveTowards(ship_obj.transform.position, shipStartPos, Time.deltaTime * speed);
             if(ship_obj.transform.position == shipStartPos)
             {
                 one.state = State.Start;

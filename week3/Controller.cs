@@ -25,6 +25,7 @@ namespace mygame
         public Controller currentScenceController;
         public State state = State.Start;
         private Model game_obj;
+        
 
         public static SSDirector GetInstance()
         {
@@ -93,6 +94,7 @@ public class Controller : MonoBehaviour {
 
     // Use this for initialization
 
+    public MySceneActionManager actionManager;
     void Start()
     {
         SSDirector one = SSDirector.GetInstance();
