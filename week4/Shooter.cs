@@ -41,12 +41,8 @@ public class Shooter : MonoBehaviour {
             {
                 if(hit.transform.gameObject.layer == 8)
                 {
-                    UFOController UFOone = hit.transform.GetComponent().ctrl;
+                    UFOController UFOone = hit.transform.GetComponent<UFOScript>().ctrl;//拿到撞到的UFO的控制器
                     sceneController.UFOIsShot(UFOone);
-                }
-                else if(hit.transform.gameObject.layer == 9)
-                {
-                    sceneController.GroundIsShot(hit.point);
                 }
             }
         }

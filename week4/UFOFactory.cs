@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using mygame;
 
 public class UFOFactory : MonoBehaviour {
 
-    Queue freeUFO;  //free UFO
-    List usingUFO; //using UFO
+    Queue<UFOController> freeUFO;  //free UFO
+    List<UFOController> usingUFO; //using UFO
 
     GameObject originalUFO; // the original of UFO
     int count = 0;
 
     private void Awake()
     {
-        freeUFO = new Queue();
-        usingUFO = new List();
+        freeUFO = new Queue<UFOController>();
+        usingUFO = new List<UFOController>();
 
         originalUFO = Instantiate(Resources.Load("UFO", typeof(GameObject))) as GameObject;
         originalUFO.SetActive(false);// this one is not active at the begining
@@ -22,11 +23,12 @@ public class UFOFactory : MonoBehaviour {
     //product one UFO
    public UFOController produceUFO(UFOAttributes attr)
     {
-        UfoController newUFO;
+        UFOController newUFO;
         if(freeUFO.Count == 0)
         {
             GameObject newone = GameObject.Instantiate(originalUFO);
-            newUFO = new UfOController(newone);
+
+            newUFO = new UFOController(newone);
             newone.transform.position += Vector3.forward * Random.value * 5;//set the position
             count++;
         }
@@ -44,7 +46,7 @@ public class UFOFactory : MonoBehaviour {
     public UFOController[] produceUFOs(UFOAttributes attr, int n)
     {
         UFOController[] some = new UFOController[n];
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             some[i] = produceUFO(attr);
         }
@@ -53,7 +55,7 @@ public class UFOFactory : MonoBehaviour {
 
     public void recyle(UFOController UFOone)
     {
-        UFOone.disppear();
+        UFOone.disappear();
         usingUFO.Remove(UFOone);
         freeUFO.Enqueue(UFOone);
     }
@@ -66,7 +68,7 @@ public class UFOFactory : MonoBehaviour {
         }
     }
 
-    public getListUFO()
+    public List<UFOController> getListUFO()
     {
         return usingUFO;
     }
