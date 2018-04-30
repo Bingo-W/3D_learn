@@ -181,17 +181,17 @@ public class RoundActionManager : SSActionManager, ISSActionCallback
 
         // 随机生成起始点和终点
         Vector3 starttPos = new Vector3(
-              UnityEngine.Random.Range(-20, 20),
-              UnityEngine.Random.Range(-5, 5),
-              UnityEngine.Random.Range(50, 10)
+              UnityEngine.Random.Range(-10,10),
+              UnityEngine.Random.Range(0,20),
+              -10
              );
 
         gameObj.transform.position = starttPos;
 
         Vector3 randomTarget = new Vector3(
-             X[UnityEngine.Random.Range(0, 2)],
-             Y[UnityEngine.Random.Range(0, 2)],
-             Z[UnityEngine.Random.Range(0, 2)]
+              UnityEngine.Random.Range(-10, 10),
+              UnityEngine.Random.Range(-10, 10),
+              20
              );
 
         MoveToAction action = MoveToAction.getAction(randomTarget, gameObj.GetComponent<DiskData>().speed);

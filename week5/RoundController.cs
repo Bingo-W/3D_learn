@@ -80,8 +80,8 @@ public class RoundController : MonoBehaviour, IUserAction, ISceneController
 
     public void LoadResources()
     {
-        Camera.main.transform.position = new Vector3(0, 0, -15);
-        //explosion = Instantiate(Resources.Load("Prefabs/ParticleSys"), new Vector3(-40, 0, 0), Quaternion.identity) as GameObject;
+        Camera.main.transform.position = new Vector3(0, 0, -30);
+        explosion = Instantiate(Resources.Load("Prefabs/ParticleSys"), new Vector3(-40, 0, 0), Quaternion.identity) as GameObject;
 
     }
 
@@ -97,9 +97,9 @@ public class RoundController : MonoBehaviour, IUserAction, ISceneController
                 {
                     shootAtSth = hit.transform.gameObject;
 
-                    //explosion.transform.position = hit.collider.gameObject.transform.position;
-                    //explosion.GetComponent<Renderer>().material = hit.collider.gameObject.GetComponent<Renderer>().material;
-                    //explosion.GetComponent<ParticleSystem>().Play();
+                    explosion.transform.position = hit.collider.gameObject.transform.position;
+                    explosion.GetComponent<Renderer>().material = hit.collider.gameObject.GetComponent<Renderer>().material;
+                    explosion.GetComponent<ParticleSystem>().Play();
                 }
             }
         }
@@ -107,7 +107,6 @@ public class RoundController : MonoBehaviour, IUserAction, ISceneController
 
     public void LaunchDisk()//每秒自动发射飞碟
     {
-        Debug.Log("666");
         if (count - leaveSeconds == 1)
         {
             count = leaveSeconds;
@@ -134,6 +133,7 @@ public class RoundController : MonoBehaviour, IUserAction, ISceneController
 
     public void Judge()//判断游戏状态，是否射中以及够不够分数进入下一回合
     {
+        
         if (shootAtSth != null && shootAtSth.transform.tag == "Disk" && shootAtSth.activeInHierarchy)//射中飞碟
         {
             scoreRecorder.Record(shootAtSth);//计分
